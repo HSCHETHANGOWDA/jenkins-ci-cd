@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.javatechie.entity.User;
 import com.javatechie.responseDto.ResponseDto;
+import com.javatechie.responseDto.UserDto;
 import com.javatechie.service.UserService;
 
 @RestController
@@ -30,9 +31,9 @@ public class UserController {
 		return service.saveUser(user);
 	}
 	
-	@GetMapping(value = "/getUserById/{userID}")
-	public User getUserById(@RequestParam Long userID) {
-		return service.getUserById(userID);
+	@GetMapping(value = "/getUserById")
+	public UserDto getUserById(@RequestParam Integer userID) {
+		return service.getUserById(Long.valueOf(userID));
 	}
 
 }

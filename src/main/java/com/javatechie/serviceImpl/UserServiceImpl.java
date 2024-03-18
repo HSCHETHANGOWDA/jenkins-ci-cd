@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import com.javatechie.entity.User;
+import com.javatechie.mapper.UserMapper;
 import com.javatechie.repositary.UserRepositary;
 import com.javatechie.responseDto.ResponseDto;
+import com.javatechie.responseDto.UserDto;
 import com.javatechie.service.UserService;
 import com.javatechie.util.JenkinsUtil;
 
@@ -24,7 +26,7 @@ public class UserServiceImpl implements UserService {
 	public ResponseEntity<ResponseDto> getAllUser() {
 		List<User> userList = repositary.findAll();
 		if (!CollectionUtils.isEmpty(userList)) {
-		return	ResponseEntity.ok().body(ResponseDto.builder().statusCode(HttpStatus.OK.value())
+			return ResponseEntity.ok().body(ResponseDto.builder().statusCode(HttpStatus.OK.value())
 					.message("Data Fecthed Successfully").dataObject(userList).build());
 		}
 		return ResponseEntity.ok().body(ResponseDto.builder().statusCode(HttpStatus.OK.value())
@@ -43,8 +45,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUserById(Long userID) {
-		return repositary.findById(userID).get();
+	public UserDto getUserById(Long userID) {
+		return UserMapper.MAPPER.userEntityTouserDto(repositary.findById(userID).get());
 	}
 
 }

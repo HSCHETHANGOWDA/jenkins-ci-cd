@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.javatechie.entity.User;
 import com.javatechie.responseDto.ResponseDto;
+import com.javatechie.responseDto.UserDto;
 
 public interface UserService {
 
@@ -11,6 +12,6 @@ public interface UserService {
 
 	ResponseEntity<ResponseDto> saveUser(User user);
 
-	User getUserById(Long userID);
+	UserDto getUserById(Long userID);
 
 }
